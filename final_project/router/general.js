@@ -30,7 +30,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
-    const author = req.params.author;
+  const author = req.params.author;
   let filteredBooks = [];
   const keys = Object.keys(books);
 
@@ -50,8 +50,21 @@ public_users.get('/author/:author',function (req, res) {
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
-  //Write your code here
-  return res.status(300).json({message: "Yet to be implemented"});
+  const title = req.params.title;
+  let filteredBooks = [];
+  const keys = Object.keys(books);
+
+  keys.forEach((key) => {
+    if(books[key].title === title){
+        filteredBooks.push(books[key]);
+    }
+  });
+  if(filteredBooks.length>0){
+    return res.status(200).json(filteredBooks);
+  }
+  else{
+    return res.status(404).json({message: "No books found with this author"});
+  }
 });
 
 //  Get book review
