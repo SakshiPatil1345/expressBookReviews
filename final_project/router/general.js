@@ -80,7 +80,17 @@ public_users.get('/author/:author',function (req, res) {
   else{
     return res.status(404).json({message: "No books found for this author"});
   }
+});
+// Get book details based on author using async/await with Axios
+public_users.get('/async/author/:author', async (req, res) => {
+  const author = req.params.author;
 
+  try {
+    const response = await axios.get(`http://localhost:5000/author/${author}`);
+    return res.status(200).json(response.data);
+  } catch (error) {
+    return res.status(404).json({ message: "No books found for this author" });
+  }
 });
 
 // Get all books based on title
