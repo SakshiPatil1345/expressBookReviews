@@ -25,7 +25,7 @@ public_users.post("/register", (req,res) => {
 
 // Get the book list available in the shop
 public_users.get('/',function (req, res) {
-  return res.status(200).json(JSON.stringify(books, null, 4));
+  return res.status(200).json(books);
 });
 
 // Get all books using async/await with Axios
@@ -108,7 +108,7 @@ public_users.get('/title/:title',function (req, res) {
     return res.status(200).json(filteredBooks);
   }
   else{
-    return res.status(404).json({message: "No books found with this author"});
+    return res.status(404).json({message: "No books found with this title"});
   }
 });
 // Get book details based on title using async/await with Axios
